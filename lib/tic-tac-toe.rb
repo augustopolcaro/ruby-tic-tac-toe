@@ -131,13 +131,19 @@ class Game
       return false
     end
     if (board_is_full?)
+      puts "Oops, is a Draw!"
       return false
     end
     return true
   end
 
   def board_is_full?
-    return false
+    @board.each do |space|
+      if space == "-"
+        return false
+      end
+    end
+    return true
   end
 
   def move
