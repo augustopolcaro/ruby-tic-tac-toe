@@ -29,6 +29,15 @@ class Player
   end
 end
 
+class Robot < Player
+  def move
+    letters = ["a", "b", "c"]
+    numbers = ["1", "2", "3"]
+    move = letters[rand(0..2)] + numbers[rand(0..2)]
+    return move
+  end
+end
+
 class Game
   include Auxiliar
 
@@ -80,7 +89,7 @@ class Game
   end
 
   def show_board
-    system("cls")
+    puts `clear`
     puts "   a     b     c"
     puts "      |     |     "
     puts "1  #{@board[0]}  |  #{@board[1]}  |  #{@board[2]}  "
@@ -111,6 +120,10 @@ class Game
       @playerOne = Player.new(getName, "X")
       puts "Player Two enter your name"
       @playerTwo = Player.new(getName, "O")
+    else
+      puts "Player One enter your name"
+      @playerOne = Player.new(getName, "X")
+      @playerTwo = Robot.new("Robotito", "O")
     end
   end
 
